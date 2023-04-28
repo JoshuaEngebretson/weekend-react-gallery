@@ -8,7 +8,8 @@
     "express": "^4.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "sweetalert2": "^11.7.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
