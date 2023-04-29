@@ -4,13 +4,17 @@ Duration: Weekend Project (04/28/23 - 04/30/23)
 
 Created a Picture Gallery to view photos of movies that I love, and add the ability to "like" the picture.
 
-This was created using React.js and hosting the server via nodemon.
+This was created using React.js, hosting the server via nodemon, and utilizing a PostgreSQL database to keep track of all the data.
 
 -----
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
     - This is for hosting the server and communicating with the database.
+- [PostgreSQL](https://www.postgresql.org/)
+    - This is used for hosting the database.
+- [Postico](https://eggerapps.at/postico/v1.php)
+    - This is used to set up your initial test database.
 
 -----
 ## Installation
@@ -19,8 +23,12 @@ This was created using React.js and hosting the server via nodemon.
     1. Once Node is installed, you will need to perform the following command within your terminal `npm install`.
         - This will install the node_modules folder the dependencies for the app.
 
+2. Set up your database
+    1. Using Postico, create a database titled `react_gallery`.
+    2. Use the database.sql file to enter your initial starting data into your database.
 
-2. You will need two terminals to operate the app properly.
+
+3. You will need two terminals to operate the app properly.
     1. The first you will run the command `npm run server`
         - This will host the server on [localhost:5000](http://localhost:5000/)
     2. The second you will run the command `npm run client`
@@ -41,6 +49,8 @@ Once the page is open, you are able to view the images within the gallery.
 
 - Node.js
 - React.js
+- PostgreSQL
+- Postico
 
 -----
 ## Acknowledgement
