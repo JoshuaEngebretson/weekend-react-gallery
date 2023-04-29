@@ -28,8 +28,9 @@ const GalleryItem = (props) => {
   const addLike = (item) => {
     axios({
       method: 'PUT',
-      url: `/items/${item.id}`
+      url: `/gallery/like/${item.id}`
     }).then(res => {
+      // If successful, update the GalleryList
       props.getGalleryList();
     }).catch(err => {
       // Provide an alert to the user that there was an error
