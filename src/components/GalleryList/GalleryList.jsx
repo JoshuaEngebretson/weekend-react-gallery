@@ -1,6 +1,4 @@
 import GalleryItem from "./GalleryItem/GalleryItem";
-import Axios from 'axios';
-import { useState } from "react";
 
 const GalleryList = (props) => {
 
