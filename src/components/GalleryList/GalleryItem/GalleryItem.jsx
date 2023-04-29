@@ -4,7 +4,7 @@ import './GalleryItem.css';
 const GalleryItem = (props) => {
 
   return (
-    <div>
+    <div className='item-card'>
       <img src={props.item.path} className='square-img'/>
       <div>
         <button className="love">Love It!</button>

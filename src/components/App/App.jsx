@@ -19,7 +19,6 @@ function App() {
       url: '/gallery'
     }).then(response => {
       setGalleryListArray(response.data);
-      console.log(response.data);
     }).catch(err => {
       Swal.fire({
         text: 'There was an error getting the Gallery, try again later.'
@@ -34,7 +33,6 @@ function App() {
         <h1 className="App-title">Gallery of My Life</h1>
       </header>
       <GalleryList galleryListArray={galleryListArray} />
-      <img src="images/goat_small.jpg"/>
     </div>
   );
 }

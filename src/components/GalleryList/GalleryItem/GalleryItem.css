@@ -2,3 +2,13 @@
   max-width: 200px;
   max-height: 200px;
 }
+
+.item-card {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 5%;
+  padding: 20px;
+  margin: 15px;
+  height: 250px;
+  width: 250px;
+}
