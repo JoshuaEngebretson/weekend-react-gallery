@@ -83,6 +83,48 @@ const galleryItems = [
         likes: 3,
         title: `Return of the King`
     },
+    {
+        id: 13,
+        path: 'images/Luca.jpg',
+        description: `Movie poster for the Disney and Pixar film "Luca".`,
+        likes: 3,
+        title: `Luca`
+    },
+    {
+        id: 13,
+        path: 'images/Ratatouille.jpeg',
+        description: `Movie poster for the Disney and Pixar film "Ratatouille".`,
+        likes: 3,
+        title: `Ratatouille`
+    },
+    {
+        id: 15,
+        path: 'images/Encanto.jpeg',
+        description: `Movie poster for the Disney film "Encanto".`,
+        likes: 3,
+        title: `Encanto`
+    },
+    {
+        id: 16,
+        path: 'images/The_Mummy.jpg',
+        description: `Movie poster for the film "The Mummy".`,
+        likes: 3,
+        title: `The Mummy`
+    },
+    {
+        id: 17,
+        path: 'images/Bram_Stokers_Dracula.jpg',
+        description: `Movie poster for the film "Bram Stoker's Dracula".`,
+        likes: 3,
+        title: `Dracula`
+    },
+    {
+        id: 18,
+        path: 'images/The_Mask_of_Zorro.jpg',
+        description: `Movie poster for the film "The Mask of Zorro".`,
+        likes: 3,
+        title: `Zorro`
+    },
 ];
 
 module.exports = galleryItems;
