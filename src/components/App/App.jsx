@@ -32,7 +32,10 @@ function App() {
       <header className="App-header">
         <h1 className="App-title">Gallery of My Life</h1>
       </header>
-      <GalleryList galleryListArray={galleryListArray} />
+      <GalleryList
+        galleryListArray={galleryListArray}
+        getGalleryList={getGalleryList}
+      />
     </div>
   );
 }

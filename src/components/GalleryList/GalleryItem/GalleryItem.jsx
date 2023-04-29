@@ -1,5 +1,7 @@
 import './GalleryItem.css';
 import { useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const GalleryItem = (props) => {
 
@@ -7,10 +9,10 @@ const GalleryItem = (props) => {
 
   const ImageOrText = () => {
     if (showText){
-      return <p>{props.item.description}</p>
+      return <p className='square'>{props.item.description}</p>
     }
     else {
-      return <img src={props.item.path} className='square-img'/>
+      return <img src={props.item.path} className='square'/>
     }
   }
 
@@ -23,13 +25,28 @@ const GalleryItem = (props) => {
     }
   }
 
+  const addLike = (item) => {
+    axios({
+      method: 'PUT',
+      url: `/items/${item.id}`
+    }).then(res => {
+      props.getGalleryList();
+    }).catch(err => {
+      // Provide an alert to the user that there was an error
+      Swal.fire({
+        text: `There was an error updating the like status for the image of ${item.title}.`
+      })
+      console.log('Error:', err);
+    })
+  }
+
   return (
     <div className='item-card'>
       <div className='text-image' onClick={toggleText}>
         <ImageOrText />
       </div>
       <div>
-        <button className="love">Love It!</button>
+        <button className="love" onClick={() => addLike(props.item)}>Love It!</button>
         <p>{props.item.likes} people have loved this image!</p>
       </div>
     </div>

@@ -8,7 +8,13 @@ const GalleryList = (props) => {
       <div className="item-card-container">
         {
           props.galleryListArray.map((item) => {
-            return <GalleryItem key={item.id} item={item} />
+            return (
+              <GalleryItem 
+                key={item.id}
+                item={item}
+                getGalleryList={props.getGalleryList}
+              />
+            )
           })
         }
       </div>

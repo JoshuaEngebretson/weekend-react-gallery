@@ -1,6 +1,7 @@
-.square-img {
+.square {
   max-width: 200px;
   max-height: 200px;
+  text-align: center;
 }
 
 .item-card {
@@ -11,4 +12,8 @@
   margin: 15px;
   height: 250px;
   width: 250px;
+}
+
+.text-image {
+  height: 200px;
 }
