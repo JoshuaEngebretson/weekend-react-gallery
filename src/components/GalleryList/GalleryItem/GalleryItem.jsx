@@ -9,7 +9,7 @@ const GalleryItem = (props) => {
 
   const ImageOrText = () => {
     if (showText){
-      return <p className='square'>{props.item.description}</p>
+      return <p className='square text'>{props.item.description}</p>
     }
     else {
       return <img src={props.item.path} className='square'/>

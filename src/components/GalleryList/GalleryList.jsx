@@ -4,7 +4,7 @@ const GalleryList = (props) => {
 
   return (
     <>
-      <h1>My Gallery</h1>
+      <h1>Films I Love</h1>
       <div className="item-card-container">
         {
           props.galleryListArray.map((item) => {

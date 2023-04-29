@@ -1,7 +1,8 @@
 .square {
   max-width: 200px;
-  max-height: 200px;
+  height: 200px;
   text-align: center;
+  margin: auto;
 }
 
 .item-card {
@@ -12,8 +13,24 @@
   margin: 15px;
   height: 250px;
   width: 250px;
+  align-content: center;
+  background-color: white;
 }
 
 .text-image {
   height: 200px;
+}
+
+.love {
+  margin-top:15px;
+  margin-bottom: -15px;
+  background-color: pink;
+}
+
+p {
+  margin-top: 10px;
+}
+
+.text {
+  padding-top: 75px;
 }
