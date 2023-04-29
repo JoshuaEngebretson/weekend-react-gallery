@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
         SELECT * FROM gallery
             ORDER BY
                 likes DESC,
-                description;
+                title;
     `;
 
     pool.query(sqlText)

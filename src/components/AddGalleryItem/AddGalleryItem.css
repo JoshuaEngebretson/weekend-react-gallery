@@ -1,0 +1,28 @@
+.red-background{
+  border: 1px solid #f9002ed2;
+}
+.red-background::placeholder{
+  color: red
+}
+
+.side{
+  display: inline-block;
+  padding: 0.5%;
+  text-align: left;
+}
+
+button{
+  margin: 1%;
+}
+
+.green {
+  background-color: rgb(169, 251, 47, 0.75);
+}
+
+.red {
+  background-color: rgba(255, 88, 88, 0.743);
+}
+
+input {
+  margin-top: 2%;
+}
