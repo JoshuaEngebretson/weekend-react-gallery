@@ -23,10 +23,10 @@ router.put('/like/:id', (req, res) => {
 
     pool.query (sqlText, [galleryId])
         .then((result) => {
-            res.sendStatus(201)
+            res.sendStatus(200)
         })
         .catch((error) => {
-            poolError('PUT', error)
+            poolError('PUT /like/:id', error)
         })
 }); // END PUT Route
 
@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
         SELECT * FROM gallery
             ORDER BY
                 likes DESC,
-                description;
+                title;
     `;
 
     pool.query(sqlText)
@@ -45,13 +45,44 @@ router.get('/', (req, res) => {
             res.send(result.rows)
         })
         .catch((error) => {
-            poolError('GET', error)
+            poolError(res, 'GET /', error)
         })
 }); // END GET Route
 
-const poolError = (routeType, err) => {
-    console.log(`Error with ${routeType} request:`, err);
+router.post('/', (req, res) => {
+    const item = req.body.newGalleryItem;
+
+    const sqlText = `
+        INSERT INTO gallery
+            (path, description, title)
+            VALUES
+            ($1, $2, $3);
+    `;
+
+    const sqlValues = [
+        item.path,
+        item.description,
+        item.title
+    ];
+
+    pool.query(sqlText, sqlValues)
+        .then((result) => {
+            poolCreateSuccess(res);
+        })
+        .catch((error) => {
+            poolError(res, 'POST /', error)
+        })
+})
+
+const poolError = (res, routeTypeAndRoute, err) => {
+    console.log(`Error with ${routeTypeAndRoute} request:`, err);
     res.sendStatus(500)
+}
+
+const poolCreateSuccess = (res) => {
+    // On successful creation within the database,
+    // send "Created status"
+    res.sendStatus(201)
 }
 
 module.exports = router;

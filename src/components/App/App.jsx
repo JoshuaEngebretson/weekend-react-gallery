@@ -4,6 +4,7 @@ import GalleryList from '../GalleryList/GalleryList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import AddGalleryItem from '../AddGalleryItem/AddGalleryItem';
 
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
       <header className="App-header">
         <h1 className="App-title">Gallery of My Life</h1>
       </header>
+      <AddGalleryItem 
+        getGalleryList={getGalleryList}
+      />
       <GalleryList
         galleryListArray={galleryListArray}
         getGalleryList={getGalleryList}
