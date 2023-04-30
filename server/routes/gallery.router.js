@@ -23,7 +23,7 @@ router.put('/like/:id', (req, res) => {
 
     pool.query (sqlText, [galleryId])
         .then((result) => {
-            res.sendStatus(200)
+            poolOkayStatus(res);
         })
         .catch((error) => {
             poolError('PUT /like/:id', error)
@@ -49,6 +49,7 @@ router.get('/', (req, res) => {
         })
 }); // END GET Route
 
+// POST Route
 router.post('/', (req, res) => {
     const item = req.body.newGalleryItem;
 
@@ -72,7 +73,26 @@ router.post('/', (req, res) => {
         .catch((error) => {
             poolError(res, 'POST /', error)
         })
-})
+}); // End POST Route
+
+// DELETE Route
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+
+    const sqlText = `
+        DELETE FROM gallery
+            WHERE id=$1;
+    `;
+
+    pool.query(sqlText, [id])
+        .then((result) => {
+            console.log('Deleted id:', id);
+            poolOkayStatus(res);
+        })
+        .catch((error) => {
+            poolError(res, 'DELETE /:id', error)
+        })
+}) // End DELETE Route
 
 const poolError = (res, routeTypeAndRoute, err) => {
     console.log(`Error with ${routeTypeAndRoute} request:`, err);
@@ -81,8 +101,14 @@ const poolError = (res, routeTypeAndRoute, err) => {
 
 const poolCreateSuccess = (res) => {
     // On successful creation within the database,
-    // send "Created status"
+    //   send "Created status"
     res.sendStatus(201)
+}
+
+const poolOkayStatus = (res) => {
+    // On successful creation within the database,
+    //   send "Okay status"
+    res.sendStatus(200)
 }
 
 module.exports = router;

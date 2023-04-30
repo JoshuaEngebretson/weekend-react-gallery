@@ -32,7 +32,7 @@ function AddGalleryItem(props) {
         // If successful, update Gallery and reset the inputs
         Swal.fire({
           icon: 'success',
-          text: `${newImageTitle} added to gallery`
+          text: `${newImageTitle} added to gallery`,
         })
         resetInputs()
         props.getGalleryList()
