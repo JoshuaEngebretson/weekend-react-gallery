@@ -6,13 +6,15 @@ import Swal from 'sweetalert2';
 const GalleryItem = (props) => {
 
   const [showText, setShowText] = useState(false)
+  
+  const item = props.item;
 
   const ImageOrText = () => {
     if (showText){
-      return <p className='square text'>{props.item.description}</p>
+      return <p className='square text'>{item.description}</p>
     }
     else {
-      return <img src={props.item.path} className='square'/>
+      return <img src={item.path} className='square'/>
     }
   }
 
@@ -25,7 +27,7 @@ const GalleryItem = (props) => {
     }
   }
 
-  const addLike = (item) => {
+  const addLike = () => {
     axios({
       method: 'PUT',
       url: `/gallery/like/${item.id}`
@@ -47,8 +49,8 @@ const GalleryItem = (props) => {
         <ImageOrText />
       </div>
       <div>
-        <button className="love" onClick={() => addLike(props.item)}>Love It!</button>
-        <p>{props.item.likes} people have loved this image!</p>
+        <button className="love" onClick={addLike}>Love It!</button>
+        <p>{item.likes} people have loved this image!</p>
       </div>
     </div>
   )

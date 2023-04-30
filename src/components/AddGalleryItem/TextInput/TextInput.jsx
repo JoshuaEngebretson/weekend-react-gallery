@@ -1,5 +1,5 @@
 function TextInput(props) {
-  // console.log(props);
+
   return (
     <div className="side">
       <label htmlFor={props.name}>{props.name}</label><br></br>
@@ -7,7 +7,7 @@ function TextInput(props) {
         type='text'
         placeholder={props.placeholder}
         value={props.item}
-        className={props.Required}
+        className={props.requiredClass}
         onChange={(evt) => {props.setItem(evt.target.value)}}
       />
     </div>

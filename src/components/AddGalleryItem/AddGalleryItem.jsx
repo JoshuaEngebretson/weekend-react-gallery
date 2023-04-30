@@ -14,12 +14,7 @@ function AddGalleryItem(props) {
   const [requiredTitle, setRequiredTitle] = useState(false);
   const [requiredDescription, setRequiredDescription] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    addToGallery();
-  }
-
-  const addToGallery = (event) => {
+  const handleSubmit = () => {
 
     const newGalleryItem = {
       path: newImageUrl,
@@ -69,8 +64,7 @@ function AddGalleryItem(props) {
     }
   }
 
-  const resetInputs = (event) => {
-    event.preventDefault();
+  const resetInputs = () => {
     setNewImageUrl('');
     setNewImageTitle('');
     setNewImageDescription('');
@@ -97,27 +91,27 @@ function AddGalleryItem(props) {
           placeholder='http://address_here'
           item={newImageUrl}
           setItem={setNewImageUrl}
-          Required={required(requiredUrl)} 
+          requiredClass={required(requiredUrl)}      
         />
         <TextInput
           name='Image Title'
           placeholder='Name of image'
           item={newImageTitle}
           setItem={setNewImageTitle}
-          Required={required(requiredTitle)} 
+          requiredClass={required(requiredTitle)} 
         />
         <TextInput
           name='Image Description'
           placeholder='Info about image'
           item={newImageDescription}
           setItem={setNewImageDescription}
-          Required={required(requiredDescription)} 
+          requiredClass={required(requiredDescription)}
         />
+      </form>
         <div>
           <button onClick={handleSubmit} className="green">Add to Gallery</button>
           <button onClick={resetInputs} className="red">Reset Inputs</button>
         </div>
-      </form>
     </>
   )
 }
