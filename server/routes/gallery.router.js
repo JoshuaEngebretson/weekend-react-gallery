@@ -9,6 +9,7 @@ const pool = require('../modules/pool')
 router.put('/like/:id', (req, res) => {
     const galleryId = req.params.id;
 
+    // Add 1 to likes for the item with this galleryId
     const sqlText = `
         UPDATE gallery
             SET likes = (likes + 1)
@@ -26,6 +27,10 @@ router.put('/like/:id', (req, res) => {
 
 // GET Route
 router.get('/', (req, res) => {
+    // Get everything from the gallery
+    //  Sort it with the highest likes at the top
+    //  Then if multiple items have the same like count
+    //  sort it by title alphabetically
     const sqlText = `
         SELECT * FROM gallery
             ORDER BY
@@ -46,6 +51,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const item = req.body.newGalleryItem;
 
+    // Add item to the database
     const sqlText = `
         INSERT INTO gallery
             (path, description, title)
@@ -72,6 +78,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
 
+    // Delete the item with id from the gallery
     const sqlText = `
         DELETE FROM gallery
             WHERE id=$1;
@@ -79,7 +86,6 @@ router.delete('/:id', (req, res) => {
 
     pool.query(sqlText, [id])
         .then((result) => {
-            console.log('Deleted id:', id);
             poolOkayStatus(res);
         })
         .catch((error) => {
@@ -88,20 +94,22 @@ router.delete('/:id', (req, res) => {
 }) // End DELETE Route
 
 const poolError = (res, routeTypeAndRoute, err) => {
+    // On Error, log the error
     console.log(`Error with ${routeTypeAndRoute} request:`, err);
+    // Send "Internal Server Error" status to client
     res.sendStatus(500)
-}
+} // End poolError
 
 const poolCreateSuccess = (res) => {
     // On successful creation within the database,
     //   send "Created status"
     res.sendStatus(201)
-}
+} // End poolCreateSuccess
 
 const poolOkayStatus = (res) => {
     // On successful creation within the database,
     //   send "Okay status"
     res.sendStatus(200)
-}
+} // End poolOkayStatus
 
 module.exports = router;
