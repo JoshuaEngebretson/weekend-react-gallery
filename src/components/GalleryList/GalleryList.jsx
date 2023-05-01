@@ -7,6 +7,9 @@ const GalleryList = (props) => {
       <h1>Films I Love</h1>
       <div className="item-card-container">
         {
+          // Loop through the galleryListArray
+          //  For each item, render a GalleryItem onto
+          //  the DOM
           props.galleryListArray.map((item) => {
             return (
               <GalleryItem 
