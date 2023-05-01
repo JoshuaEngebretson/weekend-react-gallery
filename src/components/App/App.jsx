@@ -15,19 +15,24 @@ function App() {
   }, []);
 
   const getGalleryList = () => {
+    // GET the galleryList from /gallery
     axios({
       method: 'GET',
       url: '/gallery'
     }).then(response => {
+      // If successful, setGalleryListArray
+      //  equal to the data received.
       setGalleryListArray(response.data);
     }).catch(err => {
+      // If there is an error, alert the user of the error
       Swal.fire({
         text: 'There was an error getting the Gallery, try again later.'
       })
       console.log('Error:', err);
     })
-  }
+  } // End getGalleryList
 
+  // 👇 is what an App looks like.
   return (
     <div className="App">
       <header className="App-header">
