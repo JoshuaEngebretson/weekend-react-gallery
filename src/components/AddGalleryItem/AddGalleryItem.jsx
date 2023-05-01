@@ -15,73 +15,98 @@ function AddGalleryItem(props) {
   const [requiredDescription, setRequiredDescription] = useState(false);
 
   const handleSubmit = () => {
-
+    // Create an object based on the input fields
     const newGalleryItem = {
       path: newImageUrl,
       description: newImageDescription,
       title: newImageTitle
     };
 
-    // Check if fields completed
+    // Check if all fields are completed
     if (newImageUrl !== '' && newImageTitle !== '' && newImageDescription !== '') {
+      // Send a POST to /gallery sending the newGalleryItem
       axios({
         method: 'POST',
         url: '/gallery',
         data: {newGalleryItem}
       }).then(response => {
-        // If successful, update Gallery and reset the inputs
+        // If successful
+        // Alert the user, it succeeded
         Swal.fire({
           icon: 'success',
           text: `${newImageTitle} added to gallery`,
         })
+        // Clear out the input fields once created
         resetInputs()
+        // Update the GalleryList which will re-render to the DOM
         props.getGalleryList()
       }).catch(error => {
+        // If unsuccessful
+        // Alert the user of the error
         Swal.fire({
           icon: 'warning',
           text: `Error adding ${newImageTitle} to the gallery, please try again later`
         })
+        // Log the error
         console.log('Error:', error);
       })
     }
+    // If the fields are not completed, alert the user of required fields
     else {
+      // alert the user not all required fields were completed.
       Swal.fire({
           text: 'Please fill out the required fields'
       })
+      // Call on requiredFields function which will highlight fields
+      //  that need to be completed.
       requiredFields();
     }
-  }
+  } // End handleSubmit
 
+  // Function will check if any required field is empty,
+  //  if it is, will update that input to show the user
+  //  they need to complete that field to move forward.
   const requiredFields = () => {
+    // If newImageUrl is empty, change that requirement to true
     if (newImageUrl === '') {
       setRequiredUrl(true)
     }
+    // If newImageTitle is empty, change that requirement to true
     if (newImageTitle === '') {
       setRequiredTitle(true)
     }
+    // If newImageDescription is empty, change that requirement to true
     if (newImageDescription === '') {
       setRequiredDescription(true)
     }
-  }
+  } // End requiredFields
 
   const resetInputs = () => {
+    // Clear out inputs
     setNewImageUrl('');
     setNewImageTitle('');
     setNewImageDescription('');
-    setRequiredUrl('');
-    setRequiredTitle('');
-    setRequiredDescription('');
-  }
+    // Reset the red border and change
+    //  the placeholder text back to black
+    setRequiredUrl(false);
+    setRequiredTitle(false);
+    setRequiredDescription(false);
+  } // End resetInputs
 
   const required = (param) => {
+    // if the parameter pass in is true
     if (param) {
+      // return the css className that
+      //  will show this input is required
       return 'red-background'
     }
+    // Else, no className needed.
     else {
       return ''
     }
-  }
+  } // End required
 
+  // 👇 is what the AddGalleryItem looks like
   return (
     <>
       <h1>Add a new photo</h1>
